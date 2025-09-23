@@ -1,0 +1,150 @@
+/* RecentActivity.css - Recent activity feed component styling */
+
+.recent-activity {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.recent-activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.recent-activity-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.recent-activity-view-all {
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.recent-activity-view-all:hover {
+  color: #1d4ed8;
+}
+
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-list-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+}
+
+.activity-list-empty-icon {
+  font-size: 48px;
+  color: #d1d5db;
+  margin-bottom: 12px;
+}
+
+.activity-list-empty-text {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.activity-list-empty-subtext {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.activity-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.activity-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #f3f4f6;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.activity-load-more {
+  width: 100%;
+  padding: 12px;
+  background-color: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 16px;
+}
+
+.activity-load-more:hover {
+  background-color: #f1f5f9;
+  border-color: #d1d5db;
+}
+
+.activity-load-more:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.activity-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.activity-filter-chip {
+  padding: 6px 12px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.activity-filter-chip:hover,
+.activity-filter-chip.active {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .recent-activity {
+    padding: 20px;
+  }
+  
+  .recent-activity-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .activity-filter {
+    justify-content: flex-start;
+  }
+}
