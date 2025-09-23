@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useUserProfile } from '../hooks/useUserProfile';
 import { useAuth } from '../contexts/AuthContext';
+import PartnerSearch from './PartnerSearch';
 import '../styles/Profile.css';
 
 const MandatoryProfile = ({ isModal = false }) => {
@@ -12,6 +13,7 @@ const MandatoryProfile = ({ isModal = false }) => {
     age: '',
     isSingle: '',
     partnerName: '',
+    partnerEmail: '', // Add partner email for matching
     relationshipDuration: ''
   });
   const [submitting, setSubmitting] = useState(false);
@@ -139,14 +141,16 @@ const MandatoryProfile = ({ isModal = false }) => {
             <>
               <div className="form-group">
                 <label htmlFor="partnerName">Partner Name *</label>
-                <input
-                  type="text"
-                  id="partnerName"
-                  name="partnerName"
+                <PartnerSearch
                   value={formData.partnerName}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Enter your partner's name"
+                  onChange={(partnerName, partnerUser) => {
+                    setFormData(prev => ({
+                      ...prev,
+                      partnerName: partnerName,
+                      partnerEmail: partnerUser ? partnerUser.email : ''
+                    }));
+                  }}
+                  currentUserEmail={user?.email}
                 />
               </div>
 

@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Profile.css';
 import { useUserProfile } from '../hooks/useUserProfile';
+import { useAuth } from '../contexts/AuthContext';
+import PartnerSearch from './PartnerSearch';
 
 const Profile = ({ onClose }) => {
   const { profile, updateUserProfile } = useUserProfile();
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     age: '',
     isSingle: '',
     partnerName: '',
+    partnerEmail: '',
     relationshipDuration: ''
   });
   const [submitting, setSubmitting] = useState(false);
@@ -24,6 +28,7 @@ const Profile = ({ onClose }) => {
         age: profile.age || '',
         isSingle: profile.is_single ? 'yes' : 'no', // Convert boolean to string for form
         partnerName: profile.partner_name || '',
+        partnerEmail: profile.partner_email || '',
         relationshipDuration: profile.relationship_duration || ''
       });
     }
@@ -130,13 +135,16 @@ const Profile = ({ onClose }) => {
           <>
             <div className="form-group">
               <label htmlFor="partnerName">Partner Name</label>
-              <input
-                type="text"
-                id="partnerName"
-                name="partnerName"
+              <PartnerSearch
                 value={formData.partnerName}
-                onChange={handleInputChange}
-                required
+                onChange={(partnerName, partnerUser) => {
+                  setFormData(prev => ({
+                    ...prev,
+                    partnerName: partnerName,
+                    partnerEmail: partnerUser ? partnerUser.email : ''
+                  }));
+                }}
+                currentUserEmail={user?.email}
               />
             </div>
 

@@ -3,10 +3,12 @@ import TotalUsers from './TotalUsers';
 import Observations from './Observations';
 import CouplesJoined from './CouplesJoined';
 import { useUserContext } from '../contexts/UserContext';
+import { useMutualCouples } from '../hooks/useMutualCouples';
 import '../styles/DashboardPage.css';
 
 const DashboardPage = () => {
   const { users } = useUserContext();
+  const { count: mutualCouplesCount } = useMutualCouples();
   
   console.log('Users in DashboardPage:', users);
   console.log('Users detail:', users.map(user => ({ 
@@ -17,9 +19,9 @@ const DashboardPage = () => {
   
   const totalUsers = users.length;
   const observations = users.length; // All users are observations
-  const couplesJoined = users.filter(user => !user.isSingle).length;
+  const couplesJoined = mutualCouplesCount; // Use actual mutual couples count
   
-  console.log('Stats:', { totalUsers, observations, couplesJoined });
+  console.log('Stats:', { totalUsers, observations, couplesJoined, mutualCouplesCount });
 
   return (
     <div className="stats-grid">

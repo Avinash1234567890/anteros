@@ -73,6 +73,7 @@ export const useUserProfile = () => {
           age: profileData.age,
           is_single: profileData.isSingle,
           partner_name: profileData.partnerName,
+          partner_email: profileData.partnerEmail,
           relationship_duration: profileData.relationshipDuration
         }])
         .select()
@@ -105,6 +106,7 @@ export const useUserProfile = () => {
           age: profileData.age,
           is_single: profileData.isSingle,
           partner_name: profileData.partnerName,
+          partner_email: profileData.partnerEmail,
           relationship_duration: profileData.relationshipDuration,
           updated_at: new Date().toISOString()
         })
