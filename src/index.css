@@ -1,13 +1,118 @@
-body {
+/* Modern Glassy Pink Theme */
+:root {
+  --glass-primary: rgba(219, 39, 119, 0.1);
+  --glass-secondary: rgba(244, 114, 182, 0.08);
+  --glass-accent: rgba(236, 72, 153, 0.15);
+  --glass-dark: rgba(131, 24, 67, 0.2);
+  --glass-light: rgba(251, 207, 232, 0.12);
+  
+  --pink-50: #fdf2f8;
+  --pink-100: #fce7f3;
+  --pink-200: #fbcfe8;
+  --pink-300: #f9a8d4;
+  --pink-400: #f472b6;
+  --pink-500: #ec4899;
+  --pink-600: #db2777;
+  --pink-700: #be185d;
+  --pink-800: #9d174d;
+  --pink-900: #831843;
+  
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-accent: #be185d;
+  --text-light: #f9fafb;
+  
+  --shadow-glass: 0 8px 32px rgba(219, 39, 119, 0.12);
+  --shadow-glass-lg: 0 20px 40px rgba(219, 39, 119, 0.15);
+  --border-glass: 1px solid rgba(236, 72, 153, 0.2);
+}
+
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  background: linear-gradient(135deg, 
+    var(--pink-50) 0%, 
+    var(--pink-100) 25%, 
+    var(--pink-200) 50%, 
+    var(--pink-300) 75%, 
+    var(--pink-400) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--text-primary);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Glass morphism base styles */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: var(--border-glass);
+  border-radius: 16px;
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-dark {
+  background: var(--glass-dark);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--text-light);
+}
+
+.glass-accent {
+  background: var(--glass-accent);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: var(--border-glass);
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus styles */
+input:focus,
+select:focus,
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.3);
+  border-color: var(--pink-500);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--glass-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-accent);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink-400);
+  background-clip: content-box;
 }

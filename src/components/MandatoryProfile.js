@@ -60,24 +60,23 @@ const MandatoryProfile = ({ isModal = false }) => {
   };
 
   return (
-    <div className={`mandatory-profile-container ${isModal ? 'modal-style' : ''}`}>
-      <div className="mandatory-profile-card">
-        <div className="mandatory-profile-header">
-          {!isModal && <img src="/logowings.png" alt="Logo" className="profile-logo" />}
-          <h2 className="mandatory-profile-title">
-            {isModal ? 'Complete Your Profile' : 'Complete Your Profile'}
-          </h2>
-          <p className="mandatory-profile-subtitle">
-            Welcome {user?.email}! Please complete your profile to access the application.
-          </p>
-          {!isModal && (
-            <button 
-              className="signout-link"
-              onClick={handleSignOut}
-            >
-              Sign Out
-            </button>
-          )}
+    <div className={`profile-container ${isModal ? 'modal-style' : ''}`}>
+      <div className="mandatory-profile-header">
+        {!isModal && <img src="/logowings.png" alt="Logo" className="profile-logo" />}
+        <h2 className="profile-title">
+          {isModal ? 'Complete Your Profile' : 'Complete Your Profile'}
+        </h2>
+        <p className="mandatory-profile-subtitle">
+          Welcome {user?.email}! Please complete your profile to access the application.
+        </p>
+        {!isModal && (
+          <button 
+            className="signout-link"
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </button>
+        )}
         </div>
 
         <form className="profile-form" onSubmit={handleSubmit}>
@@ -179,7 +178,6 @@ const MandatoryProfile = ({ isModal = false }) => {
             </div>
           )}
         </form>
-      </div>
     </div>
   );
 };

@@ -1,20 +1,53 @@
+/* Modern Glassy StatCards */
 .stat-card {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 250px;
-  height: 180px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(236, 72, 153, 0.25);
+  border-radius: 20px;
+  padding: 28px;
+  text-align: center;
+  box-shadow: 
+    0 8px 32px rgba(219, 39, 119, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-width: 220px;
+  min-height: 160px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.3s ease;
-  border: 1px solid #e0e0e0;
+  justify-content: center;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--pink-400), 
+    var(--pink-500), 
+    var(--pink-400), 
+    transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .stat-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(255, 255, 255, 0.45);
+  border-color: var(--pink-400);
+  box-shadow: 
+    0 20px 40px rgba(219, 39, 119, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
 }
 
 .stat-card-header {
@@ -22,37 +55,82 @@
 }
 
 .stat-card-title {
-  margin: 0;
   font-size: 16px;
   font-weight: 600;
-  color: #333333;
+  color: var(--text-accent);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .stat-card-content {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  gap: 12px;
 }
 
 .stat-number {
-  font-size: 36px;
-  font-weight: 700;
-  color: #2563eb;
-  margin-bottom: 8px;
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, 
+    var(--pink-600), 
+    var(--pink-500), 
+    var(--pink-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(219, 39, 119, 0.2);
   line-height: 1;
+  position: relative;
+}
+
+.stat-number::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--pink-400), 
+    transparent);
+  border-radius: 2px;
 }
 
 .stat-description {
-  margin: 0;
   font-size: 14px;
-  color: #666666;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+  opacity: 0.8;
   line-height: 1.4;
-  font-style: italic;
+  max-width: 180px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 20px;
+    min-width: 180px;
+    min-height: 140px;
+  }
+  
+  .stat-number {
+    font-size: 36px;
+  }
+  
+  .stat-card-title {
+    font-size: 14px;
+  }
+  
+  .stat-description {
+    font-size: 12px;
+  }
 }
 
 /* Responsive design */
