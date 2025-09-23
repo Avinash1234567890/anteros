@@ -6,6 +6,64 @@
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid #e5e7eb;
+  margin: 20px 0;
+}
+
+.recent-activity-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 16px;
+}
+
+.recent-activity-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.recent-activity-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.recent-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.no-activity {
+  text-align: center;
+  padding: 40px 20px;
+  color: #9ca3af;
+}
+
+.no-activity p {
+  margin: 0;
+  font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .recent-activity {
+    padding: 16px;
+    margin: 16px 0;
+  }
+  
+  .recent-activity-title {
+    font-size: 1.25rem;
+  }
+  
+  .recent-activity-subtitle {
+    font-size: 13px;
+  }
+  
+  .recent-activity-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
 }
 
 .recent-activity-header {

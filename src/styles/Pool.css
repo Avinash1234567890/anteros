@@ -1,0 +1,116 @@
+/* Pool.css - User pool component styling */
+
+.pool {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  margin: 20px 0;
+}
+
+.pool-header {
+  margin-bottom: 24px;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 16px;
+}
+
+.pool-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.pool-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 12px 0;
+}
+
+.pool-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pool-count {
+  background-color: #eff6ff;
+  color: #2563eb;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pool-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.no-users {
+  text-align: center;
+  padding: 60px 20px;
+  color: #9ca3af;
+}
+
+.no-users p {
+  margin: 0;
+  font-size: 16px;
+  font-style: italic;
+}
+
+/* Scrollable container for large user lists */
+.pool-list {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.pool-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pool-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.pool-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.pool-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .pool {
+    padding: 16px;
+    margin: 16px 0;
+  }
+  
+  .pool-title {
+    font-size: 1.5rem;
+  }
+  
+  .pool-subtitle {
+    font-size: 13px;
+  }
+  
+  .pool-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+  
+  .pool-count {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  
+  .pool-list {
+    max-height: 70vh;
+  }
+}
