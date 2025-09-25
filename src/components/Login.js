@@ -47,7 +47,8 @@ const Login = () => {
         if (error) {
           setMessage(`Error: ${error.message}`);
         } else {
-          setMessage('Account created! Check your email to confirm your account.');
+          // Email confirmation disabled – user should be able to sign in immediately
+          setMessage('Account created! You can sign in now.');
         }
       } else {
         const { error } = await signIn(formData.email, formData.password);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 import '../styles/Navbar.css';
-import Profile from './Proflie';
+import Profile from './Profile';
 import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = ({ users = [], onUserSelect }) => {
