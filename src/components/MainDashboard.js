@@ -11,7 +11,8 @@ import MandatoryProfile from './MandatoryProfile';
 
 const MainDashboard = () => {
   const { users, recentActivity, loading, error, refreshUsers } = useUserContext();
-  const { hasProfile } = useUserProfile();
+  const { hasProfile, refreshProfile } = useUserProfile();
+  const [dismissed, setDismissed] = React.useState(false);
 
   if (loading) {
     return <LoadingScreen message="Loading dashboard data..." />;
@@ -38,7 +39,7 @@ const MainDashboard = () => {
         </div>
 
         {/* Blocking overlay with profile form */}
-        {!hasProfile && (
+  {!hasProfile && !dismissed && (
           <div style={{
             position: 'absolute',
             inset: 0,
@@ -62,7 +63,13 @@ const MainDashboard = () => {
                 padding: '50px 46px 54px',
                 position: 'relative'
               }}>
-                <MandatoryProfile isModal={true} />
+                <MandatoryProfile 
+                  isModal={true} 
+                  onComplete={async () => {
+                    await refreshProfile?.();
+                    setDismissed(true);
+                  }}
+                />
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import PartnerSearch from './PartnerSearch';
 import '../styles/Profile.css';
 
-const MandatoryProfile = ({ isModal = false }) => {
+const MandatoryProfile = ({ isModal = false, onComplete }) => {
   const { createUserProfile } = useUserProfile();
   const { user, signOut } = useAuth();
   const [formData, setFormData] = useState({
@@ -44,7 +44,7 @@ const MandatoryProfile = ({ isModal = false }) => {
       
       if (result.success) {
         setMessage('Profile created successfully!');
-        // The useUserProfile hook will automatically update and allow access to the app
+        // The useUserProfile hook will update; allow user to continue manually
       } else {
         setMessage(`Error: ${result.error}`);
       }
@@ -175,6 +175,24 @@ const MandatoryProfile = ({ isModal = false }) => {
           {message && (
             <div className={`message ${message.includes('Error') ? 'error' : 'success'}`}>
               {message}
+              {!message.includes('Error') && onComplete && (
+                <div style={{ marginTop: '14px' }}>
+                  <button
+                    type="button"
+                    onClick={onComplete}
+                    style={{
+                      background: 'linear-gradient(135deg,var(--pink-500),var(--pink-600))',
+                      color: '#fff',
+                      border: 'none',
+                      padding: '12px 22px',
+                      borderRadius: '12px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      boxShadow: '0 8px 22px rgba(219,39,119,0.35)'
+                    }}
+                  >Continue to App</button>
+                </div>
+              )}
             </div>
           )}
         </form>
