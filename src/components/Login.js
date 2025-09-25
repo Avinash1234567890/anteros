@@ -47,7 +47,6 @@ const Login = () => {
         if (error) {
           setMessage(`Error: ${error.message}`);
         } else {
-          // Email confirmation disabled – user should be able to sign in immediately
           setMessage('Account created! You can sign in now.');
         }
       } else {
@@ -90,7 +89,7 @@ const Login = () => {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <img src="/logowings.png" alt="Logo" className="login-logo" />
+          <img src="/bitheartlogo.png" alt="Logo" className="login-logo" />
           <h2 className="login-title">
             {isReset ? 'Reset Password' : isSignUp ? 'Create Account' : 'Welcome Back'}
           </h2>

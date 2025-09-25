@@ -1,3 +1,5 @@
+// NOTE: Legacy overlay used to block sections until profile completion.
+// Left in codebase for reference; no longer applied.
 import React from 'react';
 import MandatoryProfile from './MandatoryProfile';
 

@@ -44,14 +44,25 @@ export const AuthProvider = ({ children }) => {
     return { data, error };
   };
 
-  const signUp = async (email, password) => {
+  const signUp = async (rawEmail, password) => {
+    // Normalize email to reduce duplicate-account confusion
+    const email = rawEmail.trim().toLowerCase();
+    // If email confirmation is disabled in project settings, redirect is unused.
+    // Keep for future re-enable; comment out to avoid potential mismatch confusion.
     const redirectTo = `${window.location.origin}/auth/callback`;
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: { emailRedirectTo: redirectTo }
     });
-    return { data, error };
+    if (error) {
+      // Provide a cleaner surface message for common cases
+      const friendly =
+        error.message.includes('User already registered') ? 'Email already in use. Try signing in.' :
+        error.message;
+      return { data: null, error: { ...error, message: friendly } };
+    }
+    return { data, error: null };
   };
 
   const signOut = async () => {

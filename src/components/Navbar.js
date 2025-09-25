@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = ({ users = [], onUserSelect }) => {
   const [showProfile, setShowProfile] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
 
   const handleProfileClick = () => {
@@ -16,14 +17,18 @@ const Navbar = ({ users = [], onUserSelect }) => {
     await signOut();
   };
 
+  const truncatedEmail = user?.email && user.email.length > 22
+    ? user.email.slice(0, 10) + '…' + user.email.slice(-8)
+    : user?.email;
+
   return (
     <>
       <nav className="navbar">
-        <div className="navbar-container">
+        <div className={`navbar-container ${menuOpen ? 'mobile-open' : ''}`}>
           {/* Logo on the left */}
           <div className="navbar-logo">
             <img 
-              src="/logowings.png" 
+              src="/bitheartlogo.png" 
               alt="Logo" 
               className="logo-image"
               onError={(e) => {
@@ -35,29 +40,39 @@ const Navbar = ({ users = [], onUserSelect }) => {
               LOGO
             </div>
           </div>
+          <button 
+            className="navbar-hamburger" 
+            aria-label="Toggle menu" 
+            onClick={() => setMenuOpen(o => !o)}
+          >
+            <span/>
+            <span/>
+            <span/>
+          </button>
 
-          {/* SearchBar in the middle */}
-          <div className="navbar-search">
-            <SearchBar users={users} onUserSelect={onUserSelect} />
-          </div>
+          <div className="navbar-flex-spacer" />
 
-          {/* Profile button on the right */}
-          <div className="navbar-profile">
-            <div className="user-info">
-              <span className="user-email">{user?.email}</span>
+          <div className="navbar-collapsible">
+            <div className="navbar-search">
+              <SearchBar users={users} onUserSelect={onUserSelect} />
             </div>
-            <button 
-              className="profile-button"
-              onClick={handleProfileClick}
-            >
-              Profile
-            </button>
-            <button 
-              className="signout-button"
-              onClick={handleSignOut}
-            >
-              Sign Out
-            </button>
+            <div className="navbar-profile">
+              <div className="user-info">
+                <span className="user-email" title={user?.email}>{truncatedEmail}</span>
+              </div>
+              <button 
+                className="profile-button"
+                onClick={handleProfileClick}
+              >
+                Profile
+              </button>
+              <button 
+                className="signout-button"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </button>
+            </div>
           </div>
         </div>
       </nav>

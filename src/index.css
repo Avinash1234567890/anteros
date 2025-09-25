@@ -25,6 +25,7 @@
   --shadow-glass: 0 8px 32px rgba(219, 39, 119, 0.12);
   --shadow-glass-lg: 0 20px 40px rgba(219, 39, 119, 0.15);
   --border-glass: 1px solid rgba(236, 72, 153, 0.2);
+  --mobile-gutter: clamp(12px, 4vw, 20px);
 }
 
 * {
@@ -49,6 +50,11 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
   color: var(--text-primary);
+}
+
+/* Utility responsive container padding */
+@media (max-width: 640px) {
+  .g-mobile-pad { padding-left: var(--mobile-gutter) !important; padding-right: var(--mobile-gutter) !important; }
 }
 
 code {

@@ -1,3 +1,5 @@
+// NOTE: This component previously enforced mandatory profile completion.
+// It is now unused (profile is optional). Retained for potential future reinstatement.
 import React from 'react';
 import MandatoryProfile from './MandatoryProfile';
 import { useUserProfile } from '../hooks/useUserProfile';

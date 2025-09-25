@@ -62,7 +62,7 @@ const MandatoryProfile = ({ isModal = false }) => {
   return (
     <div className={`profile-container ${isModal ? 'modal-style' : ''}`}>
       <div className="mandatory-profile-header">
-        {!isModal && <img src="/logowings.png" alt="Logo" className="profile-logo" />}
+  {!isModal && <img src="/bitheartlogo.png" alt="Logo" className="profile-logo" />}
         <h2 className="profile-title">
           {isModal ? 'Complete Your Profile' : 'Complete Your Profile'}
         </h2>

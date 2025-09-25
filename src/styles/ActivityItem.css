@@ -94,26 +94,45 @@
     align-items: stretch;
   }
   
-  .activity-content {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: stretch;
-    padding: 0;
-  }
+  .activity-content { display: flex; flex-direction: column; gap: 4px; align-items: stretch; padding: 0; }
   
-  .activity-section {
+  /* Reset base sections to be flat to avoid double card look */
+  .activity-section { 
+    display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 12px; 
+    padding: 10px 4px 10px 0; background: transparent; border: none; border-radius: 0; 
+  }
+  /* Single-card mobile layout: remove inner rounded rectangle; header/content sit directly in outer card */
+  .activity-accordion-header {
+    padding: 4px 0 8px; /* relies on outer .activity-item padding */
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     gap: 12px;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    border: 1px solid rgba(236, 72, 153, 0.15);
   }
+  /* .expanded .activity-accordion-header no longer needs radius overrides */
+  .activity-accordion-details {
+    background: transparent;
+    border: none;
+    border-top: 1px solid rgba(236,72,153,0.25);
+    border-radius: 0;
+    padding: 12px 0 4px;
+    margin-top: 4px;
+    box-shadow: none;
+  }
+  .activity-item:not(.expanded) .activity-accordion-details { display: none; }
+
+  /* Accordion */
+  .activity-accordion-header { cursor: pointer; position: relative; user-select: none; }
+  .activity-accordion-icon { margin-left: auto; font-weight: 700; font-size: 18px; line-height: 1; padding-left: 12px; color: var(--pink-600); }
+  .activity-accordion-details { display: flex; flex-direction: column; gap: 10px; animation: accordionFade .35s ease; }
+  .activity-accordion-header:focus { outline: 2px solid var(--pink-400); outline-offset: 2px; }
+  .activity-accordion-header:hover { background: transparent; }
   
+
+@keyframes accordionFade { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
   .activity-label {
     font-size: 11px;
     flex-shrink: 0;
@@ -139,33 +158,11 @@
 
 /* For very small screens */
 @media (max-width: 480px) {
-  .activity-item {
-    padding: 16px;
-    margin-bottom: 12px;
-  }
-  
-  .activity-content {
-    gap: 12px;
-  }
-  
-  .activity-section {
-    padding: 10px 12px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    text-align: left;
-  }
-  
-  .activity-label {
-    font-size: 10px;
-    min-width: auto;
-  }
-  
-  .activity-value {
-    font-size: 13px;
-    text-align: left;
-    width: 100%;
-  }
+  .activity-item { padding: 14px 14px; margin-bottom: 10px; }
+  .activity-content { gap: 10px; }
+  .activity-section { padding: 8px 10px; flex-direction: column; align-items: flex-start; gap: 4px; text-align: left; }
+  .activity-label { font-size: 10px; min-width: auto; letter-spacing: .5px; }
+  .activity-value { font-size: 12.5px; text-align: left; width: 100%; }
 }
 
 .activity-label {
